@@ -13,6 +13,16 @@ const Todo = require('./models/todo')
 //firing up express
 const app = express();
 
+//sass middleware
+const sassMiddleware = require('node-sass-middleware');
+app.use(sassMiddleware({
+    src: './assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle: 'expanded',
+    prefix: '/css'
+}))
+
 //setting up view engine as ejs
 app.set('view engine', 'ejs');
 
@@ -23,7 +33,7 @@ app.set('views', './views');
 app.use(express.urlencoded());
 
 //linking js and css file
-app.use(express.static('assests'))
+app.use(express.static('assets'))
 
 
 //rendering home page
